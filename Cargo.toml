@@ -2,5 +2,20 @@
 name = "kryptopass-cli"
 version = "0.1.0"
 edition = "2021"
+authors = ["Gabriel Maizo <maizogabriel@gmail.com>"]
+description = "Your digital fortress of secrets guarded by cryptographic wizardry! 🌟🔐"
+repository = "https://github.com/KryptoPass"
+license = "GPLv3"
+keywords = ["password", "cli", "security", "encryption"]
+categories = ["command-line-utilities", "cryptography"]
+readme = "README.md"
+
+
+[[bin]]
+name = "kpass"
+path = "src/main.rs"
+
 
 [dependencies]
+clap = { version = "4.5.23", features = ["derive"] }
+thiserror = "2.0.9"
