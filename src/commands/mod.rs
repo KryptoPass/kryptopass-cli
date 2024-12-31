@@ -1,6 +1,8 @@
 pub mod generate;
 pub mod get;
 
+use std::sync::{Arc, Mutex};
+
 use clap::{Parser, Subcommand};
 
 use crate::errors::Result;
@@ -27,10 +29,10 @@ pub enum Commands {
 }
 
 impl Handle for Commands {
-    fn handle(self, state: &mut AppState) -> Result<()> {
+    fn handle(self, app_state: Arc<Mutex<AppState>>) -> Result<()> {
         match self {
-            Commands::Generate(subcmd) => subcmd.handle(state),
-            Commands::Get(subcmd) => subcmd.handle(state),
+            Commands::Generate(subcmd) => subcmd.handle(app_state),
+            Commands::Get(subcmd) => subcmd.handle(app_state),
         }
     }
 }
@@ -42,8 +44,14 @@ impl AppState {
     pub fn new() -> Self {
         AppState {}
     }
+
+    pub fn close(&self) -> Result<()> {
+        println!("Limpiando estado...");
+
+        Ok(())
+    }
 }
 
 pub trait Handle {
-    fn handle(self, state: &mut AppState) -> Result<()>;
+    fn handle(self, state: Arc<Mutex<AppState>>) -> Result<()>;
 }

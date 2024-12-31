@@ -1,8 +1,10 @@
-use clap::{Args, Subcommand};
+use std::sync::{Arc, Mutex};
 
-use crate::errors::Result;
+use clap::{Args, Subcommand};
+use kryptopass_utils::getpass::getpass_masked;
 
 use super::{AppState, Handle};
+use crate::errors::Result;
 
 #[derive(Subcommand, Debug)]
 pub enum GetCommands {
@@ -12,9 +14,11 @@ pub enum GetCommands {
 }
 
 impl Handle for GetCommands {
-    fn handle(self, _: &mut AppState) -> Result<()> {
+    fn handle(self, _: Arc<Mutex<AppState>>) -> Result<()> {
         match self {
-            GetCommands::Password(args) => args.handle("password"),
+            GetCommands::Password(_) => {
+                let _password = getpass_masked("Enter password: ", || '*').unwrap();
+            }
             GetCommands::Passphrase(args) => args.handle("passphrase"),
             GetCommands::Token(args) => args.handle("token"),
         };

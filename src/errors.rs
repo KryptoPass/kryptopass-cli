@@ -1,16 +1,12 @@
 use thiserror::Error;
 
 #[derive(Error, Debug)]
-pub enum AppError {
-    #[error("Invalid arguments provided")]
-    InvalidArguments,
-}
+pub enum AppError {}
 
 impl AppError {
-    /// Asigna un código de error basado en el tipo de error
     pub fn exit_code(&self) -> i32 {
         match self {
-            AppError::InvalidArguments => 1,
+            _ => 1,
         }
     }
 }

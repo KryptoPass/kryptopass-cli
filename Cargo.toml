@@ -19,3 +19,8 @@ path = "src/main.rs"
 [dependencies]
 clap = { version = "4.5.23", features = ["derive"] }
 thiserror = "2.0.9"
+rand = "0.8.5"
+kryptopass-utils = { path = "E:/kryptopass-utils", version = "*" }
+unicode-width = "0.2.0"
+signal-hook = "0.3.17"
+ctrlc = "3.4.5"

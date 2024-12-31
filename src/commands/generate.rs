@@ -1,3 +1,5 @@
+use std::sync::{Arc, Mutex};
+
 use clap::Subcommand;
 
 use crate::errors::Result;
@@ -12,7 +14,7 @@ pub enum GenerateCommands {
 }
 
 impl Handle for GenerateCommands {
-    fn handle(self, _: &mut AppState) -> Result<()> {
+    fn handle(self, _: Arc<Mutex<AppState>>) -> Result<()> {
         match self {
             GenerateCommands::Password => {
                 println!("🔑 Generating secure password...");

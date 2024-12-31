@@ -1,0 +1,26 @@
+version = "0.1.0" # Recomendable renombrar al format_version o se confunde con la version del archivo. es necesario agregar la version a los archivos en profile.
+
+[profile]
+id = "56e15e60-cf6c-47e3-a44e-c0e6bdcaa0aa"
+name = "Perfil Personalizado Seguro Plus"
+
+[rules]
+length = { min = 20, max = 40 }   # Mayor longitud para mayor seguridad
+include = []
+exclude = ["Il1o0O"]              # Evita caracteres que puedan confundirse fácilmente, ademas si admite nombre de charset entonces conviene que include siempre este sobre los que se exclude. para poder seleccionar solo algunas cosas de una exclusion completa.
+uppercase = { min = 3, max = 8 }
+lowercase = { min = 5, max = 12 }
+digits = { min = 3, max = 8 }
+symbols = { min = 2, max = 6 }
+max-consecutive = 2               # Evita la repetición excesiva de caracteres
+min-entropy-bits = 80             # Asegura alta entropía para mayor seguridad
+
+# Parece que los usuarios esperan que si estan en charset se incluye por default todo,
+# pero solo los que estan en exclude que se espera que se acepten los name de los charset
+
+[charset]
+uppercase = ["A-Z", "Ñ"]
+lowercase = ["a-z", "ñ"]
+digits = ["0-9"]
+symbols = ["!@#$%^&*()-_=+[]{};:,.<>?/"]
+emoji = ["U+1F600-U+1F64F"]              # Emojis para añadir complejidad divertida
